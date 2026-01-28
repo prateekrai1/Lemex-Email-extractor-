@@ -1,6 +1,3 @@
-from prompts import PROMPT_V1
-
-
 PROMPT_V1="""
 
 You are an information extraction system.
@@ -20,7 +17,7 @@ IMPORTANT RULES:
 
 You must return a JSON object that matches the following schema exactly:
 
-{
+{{
   "origin_port_raw": string | null,
   "destination_port_raw": string | null,
   "incoterm_raw": string | null,
@@ -28,7 +25,8 @@ You must return a JSON object that matches the following schema exactly:
   "cargo_weight_unit": string | null,
   "cargo_cbm_value": number | null,
   "dangerous_goods_mentions": string[]
-}
+}}
+
 
 FIELD GUIDELINES:
 
