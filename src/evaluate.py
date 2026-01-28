@@ -75,10 +75,10 @@ def evaluate(predictions: Dict[str, Any], ground_truth: Dict[str, Any]):
 
 
 def main():
-    with open("output.json", "r") as f:
+    with open("../output.json", "r") as f:
         preds_list = json.load(f)
 
-    with open("data/ground_truth.json", "r") as f:
+    with open("../data/ground_truth.json", "r") as f:
         gt_list = json.load(f)
 
     predictions = {row["id"]: row for row in preds_list}

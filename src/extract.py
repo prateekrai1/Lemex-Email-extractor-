@@ -13,7 +13,7 @@ from ports import PortResolver
 
 MAX_RETRIES = 3
 INITIAL_BACKOFF = 2
-PORTS_PATH = "data/port_codes_reference.json"
+PORTS_PATH = "../data/port_codes_reference.json"
 
 def call_llm(client: Groq, prompt: str) -> str:
     for attempt in range(1, MAX_RETRIES + 1):
@@ -145,7 +145,7 @@ def main():
     client = Groq()
     port_resolver = PortResolver(PORTS_PATH)
 
-    with open("data/emails_testing.json", "r") as f:
+    with open("../data/emails_input.json", "r") as f:
         emails = json.load(f)
 
     results: List[dict] = []

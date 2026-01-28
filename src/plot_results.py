@@ -1,5 +1,6 @@
 import json
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 FIELDS = [
     "product_line",
@@ -11,13 +12,17 @@ FIELDS = [
     "is_dangerous",
 ]
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 def main():
-    with open("output.json") as f:
-        preds = {r["id"]: r for r in json.load(f)}
+    with open(BASE_DIR / "output.json") as f:
+        preds_list = json.load(f)
+    preds = {r["id"]: r for r in preds_list}
 
-    with open("data/ground_truth.json") as f:
-        gt = json.load(f)
+    with open(BASE_DIR / "data" / "ground_truth.json") as f:
+        gt_list = json.load(f)
+    gt = {row["id"]: row for row in gt_list}
 
     accuracies = []
 
