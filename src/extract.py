@@ -208,7 +208,7 @@ def main():
         results.append(shipment.model_dump())
         print(f"[{i}/{len(emails)}] Processed {email_id}")
 
-    with open("output.json", "w") as f:
+    with open("../output.json", "w") as f:
         json.dump(results, f, indent=2)
 
 
