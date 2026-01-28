@@ -165,7 +165,7 @@ def main():
     client = Groq()
     port_resolver = PortResolver(PORTS_PATH)
 
-    with open("data/emails_input.json", "r") as f:
+    with open("data/emails_testing.json", "r") as f:
         emails = json.load(f)
 
     results: List[dict] = []
