@@ -12,8 +12,8 @@ The final solution combines **LLM-based raw extraction** with **deterministic po
 
 ```bash
 pip install -r requirements.txt
-python extract.py      # Generates output.json
-python evaluate.py     # Prints accuracy metrics
+python src/extract.py      # Generates output.json
+python src/evaluate.py     # Prints accuracy metrics
 ```
 ## Approach Summary
 
