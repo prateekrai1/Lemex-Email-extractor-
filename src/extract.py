@@ -10,6 +10,8 @@ from pydantic import ValidationError
 from schemas import LLMExtraction, ShipmentExtraction
 from prompts import PROMPT_V1
 from ports import PortResolver
+import threading
+import concurrent.futures
 
 MAX_RETRIES = 3
 INITIAL_BACKOFF = 2

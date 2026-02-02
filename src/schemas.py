@@ -5,6 +5,7 @@ class LLMExtraction(BaseModel):
     origin_port_raw: Optional[str] = Field(
         None, description="Raw origin port as mentioned in the email"
     )
+    
     destination_port_raw: Optional[str] = Field(
         None, description="Raw destination port as mentioned in the email"
     )

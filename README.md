@@ -137,28 +137,3 @@ Phrases like "non-hazardous" incorrectly flagged as dangerous goods.
 
 Solution:
 Explicit negation detection overrides keyword matches.
-
-## System Design Questions
-### Scaling to 10,000 emails/day
-
-A queue-based architecture would be used:
-
-1. Move all the Email ingestion into a message queue (e.g., SQS / Kafka)
-  
-2. Creating a Worker pool for LLM calls with rate limiting
-
-3. Deterministic post-processing kept local and inexpensive
-
-We can store the results stored in a database for auditing and reprocessing. Moreover, caching the LLM responses and avoiding duplicate processing keeps costs within budget.
-
-### Monitoring
- 1. Continuously sample processed emails and track per-field accuracy metrics over time  
- 2. Compare model outputs against delayed human-labeled ground truth
-    Incase the accuracy drop then, first step is to identify which specific fields regressed (e.g., ports vs incoterms). The raw LLM outputs are then inspected separately from deterministic post-processing to isolate whether the failure is model-driven or rule-driven. Based on this analysis, either prompt adjustments or rule updates are applied and validated through regression testing.
-
-### Multilingual
-1. We can detect the email language upfront and route non-English emails to a multilingual instruction-tuned model something like **Llama 4 Scout**)
-2. Keep downstream normalization and business logic unchanged to preserve accuracy  
-
-For multilingual emails, a multilingual Llama model is used to extract raw signals such as ports, incoterms, and quantities across languages. 
-The model is expected to normalize localized port mentions into English before deterministic resolution. Accuracy evaluation remains consistent by comparing structured outputs rather than raw text.

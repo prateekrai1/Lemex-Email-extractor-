@@ -259,8 +259,8 @@
     "destination_port_code": "INMAA",
     "destination_port_name": "Bangalore ICD",
     "incoterm": "CIF",
-    "cargo_weight_kg": 970.0,
-    "cargo_cbm": 2.3,
+    "cargo_weight_kg": 650.0,
+    "cargo_cbm": 1.4,
     "is_dangerous": true
   },
   {

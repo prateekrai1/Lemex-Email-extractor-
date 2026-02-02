@@ -58,6 +58,8 @@ def evaluate(predictions: Dict[str, Any], ground_truth: Dict[str, Any]):
             if values_equal(pred_val, gt_val):
                 correct += 1
                 per_field_correct[field] += 1
+            else:
+                print(pred_row)
 
     accuracy = correct / total if total else 0.0
 
