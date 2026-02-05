@@ -15,9 +15,9 @@ pip install -r requirements.txt
 python src/extract.py      # Generates output.json
 python src/evaluate.py     # Prints accuracy metrics
 ```
-## Approach Summary
+## Summary
 
-The solution follows a extraction approach that combines an LLM for signal extraction with deterministic post-processing for precision. The LLM is deliberately constrained to extract raw, unnormalized facts such as port mentions, incoterms, quantities, and dangerous goods indicators. This minimizes hallucinations and keeps the model’s role focused on language understanding rather than business logic.
+This follows an extraction approach that combines an LLM for signal extraction with deterministic post-processing for precision. The LLM is deliberately constrained to extract raw, unnormalized facts such as port mentions, incoterms, quantities, and dangerous goods indicators. This minimizes hallucinations and keeps the model’s role focused on language understanding rather than business logic.
 
 All domain-specific rules such as UN/LOCODE resolution, product line inference, unit conversions, incoterm defaults, and dangerous goods negation are implemented deterministically. A dedicated port resolution layer handles abbreviations, aliases, and noisy port mentions using cannonical mappings and fallback rules. This separation of concerns proved handful in improving accuracy, especially for ports.
 
@@ -106,31 +106,6 @@ cargo_weight_kg          : 82%
 cargo_cbm                : 92%
 is_dangerous             : 100%
 ```
-
-## Edge Cases Handled
-Edge Cases Handled
-1. Port Abbreviations and Aliases
-Emails: ```EMAIL_012, EMAIL_017, EMAIL_031```
-
-Issue:
-Ports mentioned as ```SHA, MAA, SIN, HKG```
-
-Solution:
-Used Alias dictionary + substring matching in PortResolver.
-
-2. Multiple Ports / Transshipment Noise
-
-Emails: ```EMAIL_009, EMAIL_022```
-
-Issue:
-Emails mentioned multiple ports including transit points.
-
-Solution:
-Extract only the first ```origin to destination pair``` and ignore intermediate ports.
-
-3. Dangerous Goods Negation
-
-Emails: ```EMAIL_025, EMAIL_039```
 
 Issue:
 Phrases like "non-hazardous" incorrectly flagged as dangerous goods.
