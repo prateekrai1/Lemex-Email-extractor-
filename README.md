@@ -109,6 +109,4 @@ is_dangerous             : 100%
 
 Issue:
 Phrases like "non-hazardous" incorrectly flagged as dangerous goods.
-
-Solution:
 Explicit negation detection overrides keyword matches.
